@@ -721,31 +721,48 @@ $("#replayFireworks").onclick = () => {
 };
 
 // -------------------- Ambient cosmic tone --------------------
-let audioCtx = null,
-  master = null,
-  oscillators = [],
-  soundOn = false;
-function makeAmbient() {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  master = audioCtx.createGain();
-  master.gain.value = 0;
-  master.connect(audioCtx.destination);
-  [174, 261.63, 392].forEach((freq, i) => {
-    const o = audioCtx.createOscillator(),
-      g = audioCtx.createGain();
-    o.type = i === 1 ? "triangle" : "sine";
-    o.frequency.value = freq;
-    g.gain.value = i === 0 ? 0.5 : 0.18;
-    o.connect(g).connect(master);
-    o.start();
-    oscillators.push(o);
-  });
+const bgMusic = $("#bgMusic");
+let soundOn = false;
+
+if (bgMusic) {
+  bgMusic.volume = 0.28;
+  bgMusic.loop = true;
 }
-$("#soundBtn").addEventListener("click", () => {
-  if (!audioCtx) makeAmbient();
-  soundOn = !soundOn;
-  master.gain.setTargetAtTime(soundOn ? 0.012 : 0, audioCtx.currentTime, 0.8);
-  $("#soundBtn").textContent = soundOn ? "♫" : "♪";
+
+function fadeMusic(target, duration = 900) {
+  if (!bgMusic) return;
+  const start = bgMusic.volume;
+  const startTime = performance.now();
+
+  function step(now) {
+    const progress = Math.min(1, (now - startTime) / duration);
+    bgMusic.volume = start + (target - start) * progress;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+$("#soundBtn").addEventListener("click", async () => {
+  if (!bgMusic) return;
+
+  if (!soundOn) {
+    try {
+      await bgMusic.play();
+      soundOn = true;
+      fadeMusic(0.28, 1000);
+      $("#soundBtn").textContent = "♫";
+    } catch (err) {
+      console.error("Music playback failed:", err);
+      showToast("Tap the music button again to start the soundtrack.");
+    }
+  } else {
+    fadeMusic(0, 700);
+    setTimeout(() => {
+      if (!soundOn) bgMusic.pause();
+    }, 750);
+    soundOn = false;
+    $("#soundBtn").textContent = "♪";
+  }
 });
 
 // -------------------- Tiny utilities --------------------
