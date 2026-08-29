@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="dark">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#02030b" />
+  <title>HAPPY BIRTHDAY — MAMTA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <canvas id="space"></canvas>
+  <canvas id="cosmicDust"></canvas>
+  <div class="nebula nebula-a"></div>
+  <div class="nebula nebula-b"></div>
+  <div class="nebula nebula-c"></div>
+  <div class="aurora"></div>
+  <div class="grain"></div>
+  <div id="globalMeteors" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand">✦.</div>
+    <div class="top-actions"><span id="progressText">01 / 08</span><button id="soundBtn" class="icon-btn"
+        aria-label="Toggle ambient sound">♪</button></div>
+  </header>
+  <main>
+    <section id="intro" class="scene active">
+      <div class="center intro-content">
+        <div class="tiny-label">A SMALL COSMIC JOURNEY</div><button class="single-star" id="firstStar"
+          aria-label="Wake the first star"></button>
+        <div class="intro-copy">
+          <h1>Some days are ordinary<br><em>And some are worth remembering.</em></h1>
+          <p class="intro-sub">Tonight, the sky has a little something to say.</p>
+        </div>
+        <button class="ghost-btn next" data-next="sky">Look up <span>↑</span></button>
+      </div>
+      <div class="corner-note">A birthday night for Mamta</div>
+    </section>
+    <section id="sky" class="scene">
+      <div class="sky-orbit orbit-one"></div>
+      <div class="sky-orbit orbit-two"></div>
+      <div class="scene-copy left-copy sky-copy">
+        <div class="tiny-label">T</div>
+        <h2>For a little while,<br><em>leave Earth behind.</em></h2>
+        <p>I Hope you keep finding the reasons to Smile.</p>
+        <div class="sky-stats"><span><b id="starCount">0</b> stars</span><span><b>∞</b> stories</span><span><b>1</b>
+            night</span></div>
+        <button class="ghost-btn next" data-next="fireworks">Look at the sky <span>→</span></button>
+      </div>
+      <div class="sky-scroll-hint"><span class="mouse-icon"></span><span>MOVE AROUND</span></div>
+      <div class="shooting-spark spark-a"></div>
+      <div class="shooting-spark spark-b"></div>
+    </section>
+    <section id="fireworks" class="scene fireworks-scene">
+      <canvas id="fireworksCanvas"></canvas>
+      <div class="firework-intro" id="fireworkIntro">
+        <div class="tiny-label">A LITTLE BIRTHDAY SURPRISE</div>
+        <h2>Look at the sky.</h2>
+      </div>
+      <div id="birthdayReveal" class="birthday-reveal">
+        <div class="small-cosmic">✦</div>
+        <div class="birthday-line">HAPPY BIRTHDAY</div>
+        <div class="particle-title">MAMTA</div>
+        <p>May this year bring you good days, unexpected laughter, and plenty of things worth remembering.</p>
+      </div>
+      <div class="firework-caption" id="fireworkCaption">wait for it…</div><button id="replayFireworks"
+        class="ghost-btn replay">Watch again ↻</button>
+      <button class="ghost-btn next final-next" data-next="shooting">Make a wish <span>→</span></button>
+    </section>
+    <section id="shooting" class="scene">
+      <div class="wish-sky-glow"></div>
+      <div class="wish-orbit orbit-one"></div>
+      <div class="wish-orbit orbit-two"></div>
+      <div class="wish-star-core"><span>✦</span></div>
+      <div class="wish-shooting-stars"><i></i><i></i><i></i><i></i></div>
+      <div class="wish-hero">
+        <div class="tiny-label">A LITTLE MOMENT FOR YOU</div>
+        <h2>Make a wish.</h2>
+        <p>There is a quiet moment in every sky<br>when a wish feels worth making.</p>
+        <button id="wishBtn" class="gold-btn wish-main-btn">Make a wish <span>✦</span></button>
+        <div id="wishMessage" class="wish-message"></div>
+        <div id="wishInputWrap" class="wish-input-wrap hidden"><input id="wishInput" maxlength="120"
+            placeholder="Write a little wish…" autocomplete="off" />
+          <button id="sendWish" class="ghost-btn">Send it to the sky ↑</button>
+          <!-- <div class="wish-privacy-note">By sending, this wish will also be shared privately.</div> -->
+        </div>
+        <button class="ghost-btn next wish-next" data-next="constellation">Continue <span>→</span></button>
+      </div>
+      <div class="meteor-label">☄︎ MAKE A WISH · IT DOESN'T HAVE TO BE LOUD</div>
+    </section>
+    <section id="constellation" class="scene">
+      <div class="constellation-vignette"></div>
+      <div class="cake-intro">
+        <div class="tiny-label">A LITTLE SOMETHING IN THE STARS</div>
+        <h2 id="cakeIntroText">Look a little closer…</h2>
+      </div>
+      <svg id="constellationSvg" viewBox="0 0 900 650" aria-label="Birthday cake constellation">
+        <g id="constellationLines">
+          <line x1="360" y1="205" x2="360" y2="275" />
+          <line x1="450" y1="170" x2="450" y2="275" />
+          <line x1="540" y1="205" x2="540" y2="275" />
+          <line x1="315" y1="275" x2="585" y2="275" />
+          <line x1="315" y1="275" x2="335" y2="390" />
+          <line x1="585" y1="275" x2="565" y2="390" />
+          <line x1="335" y1="390" x2="565" y2="390" />
+          <line x1="335" y1="390" x2="360" y2="485" />
+          <line x1="565" y1="390" x2="540" y2="485" />
+          <line x1="360" y1="485" x2="540" y2="485" />
+          <line x1="335" y1="350" x2="385" y2="370" />
+          <line x1="385" y1="370" x2="430" y2="350" />
+          <line x1="430" y1="350" x2="475" y2="370" />
+          <line x1="475" y1="370" x2="520" y2="350" />
+          <line x1="520" y1="350" x2="565" y2="370" />
+          <line x1="300" y1="500" x2="600" y2="500" />
+          <line x1="350" y1="180" x2="360" y2="205" />
+          <line x1="440" y1="145" x2="450" y2="170" />
+          <line x1="530" y1="180" x2="540" y2="205" />
+        </g>
+        <g id="constellationStars">
+          <g>
+            <circle class="cake-halo" cx="360" cy="205" r="23" />
+            <circle class="cake-star candle-star" cx="360" cy="205" r="5" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="450" cy="170" r="26" />
+            <circle class="cake-star candle-star" cx="450" cy="170" r="5.8" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="540" cy="205" r="23" />
+            <circle class="cake-star candle-star" cx="540" cy="205" r="5" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="315" cy="275" r="20" />
+            <circle class="cake-star" cx="315" cy="275" r="4.6" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="585" cy="275" r="20" />
+            <circle class="cake-star" cx="585" cy="275" r="4.6" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="360" cy="485" r="20" />
+            <circle class="cake-star" cx="360" cy="485" r="4.6" />
+          </g>
+          <g>
+            <circle class="cake-halo" cx="540" cy="485" r="20" />
+            <circle class="cake-star" cx="540" cy="485" r="4.6" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="335" cy="390" r="11" />
+            <circle class="cake-star small" cx="335" cy="390" r="2.4" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="565" cy="390" r="11" />
+            <circle class="cake-star small" cx="565" cy="390" r="2.4" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="450" cy="350" r="11" />
+            <circle class="cake-star small" cx="450" cy="350" r="2.4" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="350" cy="180" r="9" />
+            <circle class="cake-star flame-spark" cx="350" cy="180" r="2.3" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="440" cy="145" r="9" />
+            <circle class="cake-star flame-spark" cx="440" cy="145" r="2.3" />
+          </g>
+          <g>
+            <circle class="cake-halo faint" cx="530" cy="180" r="9" />
+            <circle class="cake-star flame-spark" cx="530" cy="180" r="2.3" />
+          </g>
+        </g>
+      </svg>
+      <div id="cakeBirthdayText" class="cake-birthday-text">Looks like someone has a birthday.<span>Happy Birthday,
+          Mamta ✦</span></div>
+      <button class="ghost-btn next cake-next" data-next="quiet">Continue <span>→</span></button>
+    </section>
+    <section id="quiet" class="scene">
+      <div class="quiet-stars"></div>
+      <div class="center quiet-content">
+        <div class="tiny-label">THE QUIET MOMENT</div>
+        <div class="moon-phase"><span></span></div>
+        <h2>Even the universe<br><em>has quiet moments.</em></h2>
+        <p>So here's one.</p>
+        <div class="quiet-line"></div>
+        <p class="quiet-small">No message. No countdown. Just a little sky.</p><button class="ghost-btn next"
+          data-next="ending">One last note <span>→</span></button>
+      </div>
+    </section>
+    <section id="ending" class="scene">div class="ending-galaxy"></div>
+      <div class="center ending-content">
+        <div class="tiny-label">m</div>
+        <div class="final-star">✦</div>
+        <h1>Happy Birthday,<br><em>Mamta.</em></h1>
+        <div class="divider"></div>
+        <p>I hope this year gives you plenty of good moments, unexpected laughter, kind people, new places, and many
+          things worth remembering.</p>
+        <p class="small-note">I hadn't wished you on your birthday before. A normal “happy birthday” felt a little too
+          ordinary, so I made you a tiny universe instead.</p>
+        <div class="ending-signature">— from someone who thinks you deserve a really good year.</div><button
+          id="againBtn" class="gold-btn">Start the JOURNEY again ↻</button>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
